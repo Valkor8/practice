@@ -1,6 +1,6 @@
 import { Component } from '../core/component';
 import { Form } from '../core/form';
-import { Validators } from '../core/validators'
+import { Validators } from '../core/validators';
 
 export class CreateComponent extends Component {
   constructor(id) {
@@ -14,7 +14,7 @@ export class CreateComponent extends Component {
       title: [Validators.required],
       fulltext: [Validators.required, Validators.minLength(10)]
     });
-  }
+  };
 };
 
 function submitHandler(evt) {
@@ -25,8 +25,7 @@ function submitHandler(evt) {
       type: this.el.type.value,
       ...this.form.value()
     };
+    this.form.clear();
     console.log(formData);
-  } else {
-    console.log('Form is invalid');
   }
 }

@@ -14,20 +14,48 @@ export class Form {
     return value;
   };
 
+  clear() {
+    Object.keys(this.controls).forEach(control => {
+      this.form[control].value = '';
+    });
+  }
+
   isValid() {
     let isFormValid = true;
-
     Object.keys(this.controls).forEach(control => {
       const validators = this.controls[control];
-
       let isValid = true;
       validators.forEach(validator => {
         isValid = validator(this.form[control].value) && isValid
+        console.log(this.form['type'])
       });
 
+      if(!isValid) {
+        setError(this.form[control]);
+      } else {
+        clearError(this.form[control]);
+      }
+
       isFormValid = isFormValid && isValid;
-    })
+    });
 
     return isFormValid;
-  }
-}
+  };
+};
+
+const clearError = (control) => {
+  control.classList.remove('invalid');
+
+  if(control.nextSibling) {
+    control.closest('.form-control').removeChild(control.nextSibling);
+  };
+};
+
+const setError = (control) => {
+  clearError(control);
+  const err = '<p class = "validation-error">Введите корректное значение</p>'
+  control.classList.add('invalid');
+  control.insertAdjacentHTML('afterend', err);
+};
+
+
