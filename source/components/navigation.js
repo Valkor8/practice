@@ -1,4 +1,4 @@
-import { Component } from "../core/component";
+import { Component } from "../core/component.js";
 
 export class NavigationComponent extends Component {
   constructor (id) {
@@ -25,6 +25,6 @@ function tabClickHandler (evt) {
     const activeTab = this.tabs.find(t => t.name === evt.target.dataset.name);
     this.tabs.forEach(tab => tab.component.hide());
     activeTab.component.show();
-    this.tabs.forEach(tab => console.log(tab.component))
+    // this.tabs.forEach(tab => console.log(tab.component))
   }
 }

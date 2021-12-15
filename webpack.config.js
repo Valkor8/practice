@@ -18,25 +18,28 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './source/index.html',
-      // inject: false // Отключает автоматическую вставку тега <script> в html
+      inject: false // Отключает автоматическую вставку тега <script> в html
     })
   ],
   // Чтобы можно было не писать расширение в модулях
   resolve: {
     extensions: ['.js']
   },
-  module: {
-    rules: [
-      {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
-  }
-}
+
+  // Отключил babel (ломает код в api.js)
+
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.m?js$/,
+  //       exclude: /node_modules/,
+  //       use: {
+  //         loader: "babel-loader",
+  //         options: {
+  //           presets: ['@babel/preset-env']
+  //         }
+  //       }
+  //     }
+  //   ]
+  // }
+};

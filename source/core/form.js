@@ -27,14 +27,13 @@ export class Form {
       let isValid = true;
       validators.forEach(validator => {
         isValid = validator(this.form[control].value) && isValid
-        console.log(this.form['type'])
       });
 
       if(!isValid) {
         setError(this.form[control]);
       } else {
         clearError(this.form[control]);
-      }
+      };
 
       isFormValid = isFormValid && isValid;
     });
