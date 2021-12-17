@@ -27,6 +27,18 @@ class ApiService {
       console.error(err);
     };
   };
+
+  async fetchPostById(id) {
+    try {
+      const request = new Request(`${this.url}posts/${id}.json`, {
+        method: 'get'
+      });
+      const response = await fetch(request);
+      return await response.json();
+    } catch (err) {
+      console.error(err);
+    };
+  }
 };
 
 export const apiService = new ApiService('https://test-project-a4bfd-default-rtdb.firebaseio.com/');

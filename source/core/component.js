@@ -6,7 +6,7 @@ export class Component {
 
   init() {};
 
-  onshow() {};
+  onShow() {};
 
   onHide() {};
 
@@ -17,7 +17,7 @@ export class Component {
 
   show() {
     this.el.classList.remove('hide');
-    this.onshow();
+    this.onShow();
   };
 
 };
