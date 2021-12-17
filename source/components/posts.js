@@ -33,23 +33,24 @@ function buttonHandler (evt) {
   const title = el.dataset.title;
 
   if (id && title) {
-    let favotires = JSON.parse(localStorage.getItem('favorites')) || [];
-    console.log(favotires);
-
-    if (favotires.includes(id)) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const favoritesId = favorites.map( obj => {
+      return obj.id
+    })
+    if (favoritesId.includes(id)) {
       el.textContent = 'Сохранить';
       el.classList.add('button-primary');
       el.classList.remove('button-danger');
-      favotires = favotires.filter(fId => fId != id);
+      favorites = favorites.filter(obj => obj.id !== id);
     } else {
       el.textContent = 'Удалить';
       el.classList.remove('button-primary');
       el.classList.add('button-danger');
-      favotires.push(id);
+      favorites.push({id: id, title: title});
     }
 
-    localStorage.setItem('favorites', JSON.stringify(favotires));
-  }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  };
 };
 // && fId != title
 // filter(fId => fId != id && fId != title);
